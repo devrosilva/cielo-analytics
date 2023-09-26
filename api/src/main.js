@@ -14,9 +14,6 @@ function paginate(array, pageSize, pageNumber) {
 
 app.get("/sales", async (req, res) => {
     let sales = data
-    // if (req.query?.pageSize || req.query?.pageNumber) {
-    //     sales = paginate(sales.items, req.query?.pageSize, req.query?.pageNumber)
-    // }
     setTimeout(() => res.json(sales), 100)
 })
 
