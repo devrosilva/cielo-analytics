@@ -1,7 +1,8 @@
-export function App() {
+import { MainContent } from "./pages/main-content"
+
+function App() {
   return (
-    <>
-    </>
+    <MainContent />
   )
 }
 
