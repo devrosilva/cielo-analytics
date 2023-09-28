@@ -1,17 +1,21 @@
 import {Card, CardContent, CardHeader, CardTitle, } from "@/components/ui/card"
-import { DolarIcon } from "./icons/dolar-icon"
+import formatMoney from "@/utils/formatMoney"
 
-export const AnalyticsCard = () => {
+type AnalyticsCardData = {
+  title: string
+  value: string | number | undefined
+}
+
+export const AnalyticsCard = ({ title, value }: AnalyticsCardData) => {
   return(
-      <Card className="bg-sky-50">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <Card className="bg-sky-50 shadow-lg shadow-gray-400/60 rounded m-1">
+        <CardHeader>
           <CardTitle className="text-sm font-medium">
-            NET AMOUNT
+            {title}
           </CardTitle>
-          <DolarIcon />
         </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">$45,231.89</div>
+        <CardContent className="flex flex-col space-y-1.5 p-6 font-bold">
+          <div>{formatMoney(String(value))}</div>
         </CardContent>
     </Card>
   )

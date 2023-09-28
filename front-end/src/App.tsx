@@ -1,8 +1,8 @@
-import { MainContent } from "./pages/main-content"
+import { Dashboard } from "./pages/dashboard"
 
 function App() {
   return (
-    <MainContent />
+    <Dashboard />
   )
 }
 
