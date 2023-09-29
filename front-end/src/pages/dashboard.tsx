@@ -4,10 +4,10 @@ import { CalendarDateRangePicker } from "@/components/components/date-range-pick
 import { AnalyticsIcon } from "@/components/components/icons/analytics-icon"
 import { SettingsIcon } from "@/components/components/icons/settings-icon"
 import { TransactionsTable } from "@/components/components/transactions-table"
-import Api from "@/services/Api"
 import { PayloadData } from "@/types/payload-data"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@radix-ui/react-tabs"
 import { useEffect, useState } from "react"
+import { fetchSales } from "@/services/fetch-sales"
 
 export const Dashboard = () => {
     const PAGE_NUMBER_DEFAULT: number = Number(import.meta.env.VITE_DEFAULT_PAGE_NUMBER)
@@ -18,21 +18,11 @@ export const Dashboard = () => {
     const [pageSize, setPageSize] = useState<number>(PAGE_SIZE_DEFAULT)
     // eslint-disable-next-line
     const [pageNumber, setPageNumber] = useState<number>(PAGE_NUMBER_DEFAULT)
-
-    const fetchProducts = async (pageSize: number, pageNumber: number) => {
-        try {
-          const { data } = await Api.get(
-            `/sales?pageSize=${pageSize}&pageNumber=${pageNumber}`,
-          )
-          setSales(data)
-        } catch (err) {
-          console.error(err)
-        }
-      }
-    
+   
     useEffect(() => {
         (async () => {
-            await fetchProducts(pageSize, pageNumber)
+            const result: PayloadData = await fetchSales(pageSize, pageNumber)
+            setSales(result)
         })()
     }, [pageNumber, pageSize])
 

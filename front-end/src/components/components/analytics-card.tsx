@@ -1,5 +1,5 @@
 import {Card, CardContent, CardHeader, CardTitle, } from "@/components/ui/card"
-import formatMoney from "@/utils/formatMoney"
+import { formatMoney } from "@/utils/format-money"
 
 type AnalyticsCardData = {
   title: string
@@ -8,7 +8,7 @@ type AnalyticsCardData = {
 
 export const AnalyticsCard = ({ title, value }: AnalyticsCardData) => {
   return(
-      <Card className="bg-sky-50 shadow-lg shadow-gray-400/60 rounded m-1">
+      <Card data-testid={"analytics-card"} className="bg-sky-50 shadow-lg shadow-gray-400/60 rounded m-1">
         <CardHeader>
           <CardTitle className="text-sm font-medium">
             {title}
