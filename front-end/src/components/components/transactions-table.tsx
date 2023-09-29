@@ -59,9 +59,10 @@ export const TransactionsTable = ({ items }: TransactionsTableData) => {
     () => fetchData(fetchDataOptions, items),
     { keepPreviousData: true }
   )
+  const defaultData = useMemo(() => [], [])
 
   const table = useReactTable({
-    data: dataQuery.data?.rows,
+    data: dataQuery.data?.rows ?? defaultData,
     columns,
     pageCount: 3,
     state: {pagination},
