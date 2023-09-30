@@ -15,12 +15,12 @@ The challenge consists of:
 - React
 
 ## 💻 How to test this project
-To test this project, make sure you have Node.js installed on your computer
+To test this project, make sure you have Node.js version v18.16.0 installed on your computer
 and follow the instructions bellow:
 
 ### Clone the project with the following command:
 ```
-git clone https://github.com/devrosilva/cielo-challenge.git
+git clone https://github.com/devrosilva/cielo-analytics.git
 ```
 ### Open your terminal to install the necessary dependencies
 1. Go to the folder cielo-challenge/api
@@ -33,22 +33,13 @@ npm install
 ```
 npm install
 ```
-### Create an .env file inside the front-end folder
-```
-VITE_API_BASE_URL=http://localhost:3000
-VITE_API_TIMEOUT=20000
-VITE_DEFAULT_PAGE_SIZE=25
-VITE_DEFAULT_PAGE_NUMBER=60
-```
+
 ### Run both the front-end and api (on separated terminals)
 ```
 npm run dev (to run the front-end)
 npm start (to run the api)
 ```
-### Access the project by opening the following url on your preferred browser
-```
-http://localhost:3333
-```
+### Access the project by opening on your browser the url informed on your terminal
 
 ## 🌐 Links
 [NodeJS](https://nodejs.org/en/download)
