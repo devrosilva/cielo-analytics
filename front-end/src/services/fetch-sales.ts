@@ -1,13 +1,17 @@
-import { formatDate } from "@/utils/format-date"
-import axios from "axios"
+import { formatDate } from '@/utils/format-date'
+import axios from 'axios'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL
 const timeout = Number(import.meta.env.VITE_API_TIMEOUT)
 
-export const fetchSalesByPageSizeAndNumber = async (pageSize: number, pageNumber: number) => {
+export const fetchSalesByPageSizeAndNumber = async (
+  pageSize: number,
+  pageNumber: number,
+) => {
   try {
     const { data } = await axios.get(
-      `${baseURL}/sales?pageSize=${pageSize}&pageNumber=${pageNumber}`, {timeout}
+      `${baseURL}/sales?pageSize=${pageSize}&pageNumber=${pageNumber}`,
+      { timeout },
     )
     return data
   } catch (err) {
@@ -15,14 +19,18 @@ export const fetchSalesByPageSizeAndNumber = async (pageSize: number, pageNumber
   }
 }
 
-export const fetchSalesByDate = async (from: Date | undefined, to: Date | undefined) => {
-  if(!(from && to)) return
+export const fetchSalesByDate = async (
+  from: Date | undefined,
+  to: Date | undefined,
+) => {
+  if (!(from && to)) return
 
   const fromParam = formatDate(from)
   const toParam = formatDate(to)
   try {
     const { data } = await axios.get(
-      `${baseURL}/sales?from=${fromParam}&to=${toParam}`, {timeout}
+      `${baseURL}/sales?from=${fromParam}&to=${toParam}`,
+      { timeout },
     )
     return data
   } catch (err) {

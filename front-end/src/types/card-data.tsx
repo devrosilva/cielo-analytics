@@ -1,5 +1,5 @@
 export type CardData = {
-    totalAmount: number
-    totalNetAmount: number
-    totalAverageAmount: number,
-  }
+  totalAmount: number
+  totalNetAmount: number
+  totalAverageAmount: number
+}

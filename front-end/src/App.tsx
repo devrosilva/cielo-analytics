@@ -1,5 +1,5 @@
-import { Toaster } from "./components/ui/toaster"
-import { Dashboard } from "./pages/dashboard"
+import { Toaster } from './components/ui/toaster'
+import { Dashboard } from './pages/dashboard'
 
 function App() {
   return (
@@ -7,7 +7,6 @@ function App() {
       <Toaster />
       <Dashboard />
     </main>
-    
   )
 }
 

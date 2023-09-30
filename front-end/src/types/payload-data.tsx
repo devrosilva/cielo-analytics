@@ -1,9 +1,9 @@
-import { Items } from "./items"
-import { Pagination } from "./pagination"
-import { SumaryData } from "./sumary-data"
+import { Items } from './items'
+import { Pagination } from './pagination'
+import { SumaryData } from './sumary-data'
 
 export type PayloadData = {
-    summary: SumaryData
-    pagination: Pagination
-    items: Items
+  summary: SumaryData
+  pagination: Pagination
+  items: Items
 }

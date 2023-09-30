@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from 'vitest'
 import axios from 'axios'
 import { fetchSalesByPageSizeAndNumber } from '@/services/fetch-sales'
-import data from "../../../api/sales.json" assert { type: 'json' };
+import data from '../../../api/sales.json' assert { type: 'json' }
 
 const baseURL = 'http://localhost:3000'
 const pageSize = 25
@@ -15,18 +15,21 @@ describe('Dashboard page', () => {
   describe('Sales Retrieve Service', () => {
     test('makes a GET request to fetch sales', async () => {
       vi.mocked(axios.get).mockResolvedValue({
-        data: salesMock
+        data: salesMock,
       })
 
       const sales = await fetchSalesByPageSizeAndNumber(pageSize, pageNumber)
       expect(axios.get).toHaveBeenCalledTimes(1)
-      expect(axios.get).toHaveBeenCalledWith(`${baseURL}/sales?pageSize=${pageSize}&pageNumber=${pageNumber}`, {timeout})
+      expect(axios.get).toHaveBeenCalledWith(
+        `${baseURL}/sales?pageSize=${pageSize}&pageNumber=${pageNumber}`,
+        { timeout },
+      )
       expect(sales).toStrictEqual(salesMock)
     })
 
     test('if the number of returned items corresponds to the defined pageSize', async () => {
       vi.mocked(axios.get).mockResolvedValue({
-        data: salesMock
+        data: salesMock,
       })
 
       const sales = await fetchSalesByPageSizeAndNumber(pageSize, pageNumber)
