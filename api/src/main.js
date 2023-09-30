@@ -19,15 +19,12 @@ app.get("/sales", async (req, res) => {
         setTimeout(() => res.json(sales), 100)
     }
     else if (keys.includes('to') && keys.includes('from')) {
-        console.log('Inside else if')
         const params = req.query
         if(data.summary.initialDate === params.to && data.summary.finalDate === params.from){
-            console.log('Inside request')
             setTimeout(() => res.json(sales), 100)
         }
         else return res.json({})
     }
-    console.log('Req', req.query)
 })
 
 app.listen(3000, () => {

@@ -8,13 +8,13 @@ type AnalyticsCardData = {
 
 export const AnalyticsCard = ({ title, value }: AnalyticsCardData) => {
   return(
-      <Card data-testid={"analytics-card"} className="bg-sky-50 shadow-lg shadow-gray-400/60 rounded m-1">
-        <CardHeader>
+      <Card data-testid={"analytics-card"} className="bg-sky-50 shadow-lg shadow-gray-400/60 rounded">
+        <CardHeader className="flex flex-col space-y-0 p-5 font-bold">
           <CardTitle className="text-sm font-medium">
             {title}
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col space-y-1.5 p-6 font-bold">
+        <CardContent className="flex flex-col space-y-0 p-5 font-bold">
           <div>{formatMoney(String(value))}</div>
         </CardContent>
     </Card>
