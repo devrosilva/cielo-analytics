@@ -5,7 +5,7 @@ type TopCardsData = {
     summary: SumaryData | undefined
 }
   
-export const AnalyticsCards = ({ summary }: TopCardsData) => {
+export const AnalyticsCardsContainer = ({ summary }: TopCardsData) => {
     const sumaryTitles = {
         totalAmount: 'TOTAL AMOUNT',
         totalNetAmount: 'NET AMOUNT',
@@ -13,7 +13,7 @@ export const AnalyticsCards = ({ summary }: TopCardsData) => {
     }
 
     return (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
             {Object.keys(sumaryTitles).map((title): keyof typeof sumaryTitles => {
                 return (
                     <AnalyticsCard 
