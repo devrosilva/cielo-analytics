@@ -7,9 +7,9 @@ type TopCardsData = {
 
 export const AnalyticsCardsContainer = ({ summary }: TopCardsData) => {
   const sumaryTitles = {
-    totalAmount: 'TOTAL AMOUNT',
-    totalNetAmount: 'NET AMOUNT',
-    totalAverageAmount: 'AVERAGE AMOUNT',
+    totalAmount: 'MONTANTE TOTAL',
+    totalNetAmount: 'VALOR LÍQUIDO',
+    totalAverageAmount: 'MÉDIA POR TRANSAÇÃO',
   }
 
   return (
