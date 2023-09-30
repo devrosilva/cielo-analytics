@@ -10,45 +10,15 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { Button } from '../ui/button'
 import { useMemo, useState } from 'react'
 import { fetchData } from '@/utils/fetch-data'
-import { formatMoney } from '@/utils/format-money'
+import { getPageCount } from '@/utils/get-page-count'
+import { getColumns } from '@/utils/get-table-columns'
 
 type TransactionsTableData = {
   items: Items
 }
 
 export const TransactionsTable = ({ items }: TransactionsTableData) => {
-  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({pageIndex: 0, pageSize: 10})
-  const pagination = useMemo(() => ({ pageIndex, pageSize }), [pageIndex, pageSize])
-
-  const columns = [
-    {
-      accessorKey: 'id',
-      header: () => <span>Id</span>,
-      cell: info => info.getValue(),
-    },
-    {
-      accessorKey: 'date',
-      header: () => <span>Data</span>,
-      cell: info => {
-        const date = new Date(info.getValue()).toDateString()
-        return date 
-      },
-    },
-    {
-      accessorKey: 'netAmount',
-      header: () => <span>Valor líquido</span>,
-      cell: info => {
-        const amount = info.getValue()
-        const formatted = formatMoney(amount)
-        return formatted
-      } ,
-    },
-    {
-      accessorKey: 'status',
-      header: () => <span>Status</span>,
-      cell: info => info.getValue(),
-    },
-  ]
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({pageIndex: 0, pageSize: 5})
 
   const fetchDataOptions = {
     pageIndex,
@@ -60,11 +30,14 @@ export const TransactionsTable = ({ items }: TransactionsTableData) => {
     { keepPreviousData: true }
   )
   const defaultData = useMemo(() => [], [])
+  const columns = getColumns()
+  const pageCount = getPageCount(Object.values(items).length, pageSize)
+  const pagination = useMemo(() => ({ pageIndex, pageSize }), [pageIndex, pageSize])
 
   const table = useReactTable({
     data: dataQuery.data?.rows ?? defaultData,
     columns,
-    pageCount: 3,
+    pageCount: pageCount,
     state: {pagination},
     onPaginationChange: setPagination,
     manualPagination: true,
@@ -96,23 +69,42 @@ export const TransactionsTable = ({ items }: TransactionsTableData) => {
           ))}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-end space-x-2 py-4 pr-4 bg-sky-50">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {'<'}
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {'>'}
-        </Button>
+      <div className='flex justify-between items-center bg-sky-50'>
+        <div className=''>
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={e => {
+              table.setPageSize(Number(e.target.value))
+            }}
+            className='flex ml-2 p-1 border-solid bg-sky-50 border-solid border-2 border-sky-300 rounded'
+          >
+            {[5, 10, 15, 20, 25].map(pageSize => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex space-x-2 py-4 pr-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            className='border-2 border-sky-300 rounded'
+          >
+            {'<'}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+            className='border-2 border-sky-300 rounded'
+          >
+            {'>'}
+          </Button>
+        </div>
       </div>
     </div>
   )
